@@ -58,11 +58,7 @@ $(document).ready(function() {
   // allows manual bypass of speedbump for approvedfast or ffbf-hosted content
   $(".bypass-bump").each(function() {
     var anchor = $(this);
-    var urlRegex = /(((ftp|https?):\/\/)[\-\w@:%_\+.~#?,&\/\/=]+)|((mailto:)?[_.\w-]+@([\w][\w\-]+\.)+[a-zA-Z]{2,3})/g;  
-    var url = urlRegex.exec(anchor.attr("onclick"))[0];
-    anchor.removeAttr("onclick");
-    anchor.removeAttr("data-toggle");
-    anchor.attr("href", url);
+    anchor.unbind('click');
   });
 });
 // end (document).ready()
