@@ -2,7 +2,7 @@
 $(document).ready(function() {
   // configure login
   $("#login_box form input").attr("onfocus", "activate_login();")
-  $("#login_box button[type='submit']").after("<a href='ForgotPassword' class='pw_help glyphicon glyphicon-question-sign'></a>");
+  $("#login_box button[type='submit']").after("<a href='/ForgotPassword' class='pw_help glyphicon glyphicon-question-sign'></a>");
   if ($(".hide-login").length) {
     $("#login_box").addClass("invis");
   };
@@ -24,6 +24,16 @@ $(document).ready(function() {
   $("#qrl-footer *:contains('|')").each(function() {    
     $(this).html($(this).html().replace(/\|/g, ""));
   });
+  $("a[href='privacy_statement']").attr("href", "https://www.ffbf.com/security-privacy").addClass("bypass-bump");
+  // redirects privacy_statement to https://www.ffbf.com/security-privacy
+  if ($(".privacy_statement_redirect").length) {
+    window.location = "https://www.ffbf.com/security-privacy"; 
+  }
+  $("a[href='license']").attr("href", "https://www.ffbf.com/terms-and-conditions").addClass("bypass-bump");  
+  // redirects license to https://www.ffbf.com/terms-and-conditions
+  if ($(".license_redirect").length) {
+    window.location = "https://www.ffbf.com/terms-and-conditions"; 
+  }
   $("#qrl-footer a").each(function() {
     $(this).text($(this).text().trim());
   });  
@@ -58,7 +68,7 @@ $(document).ready(function() {
   // allows manual bypass of speedbump for approvedfast or ffbf-hosted content
   $(".bypass-bump").each(function() {
     var anchor = $(this);
-    anchor.unbind('click');
+    anchor.unbind("click");
   });
 });
 // end (document).ready()
