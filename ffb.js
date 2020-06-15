@@ -3,7 +3,7 @@ $(document).ready(function() {
   // configure login
   $("#login_box form input").attr("onfocus", "activate_login();")
   $("#login_box button[type='submit']").after("<a href='/ForgotPassword' class='pw_help glyphicon glyphicon-question-sign'></a>");
-  $("#login_box button[type='submit']").html("<i class="fa fa-lock" aria-hidden="true"></i>Login");
+  $("#login_box button[type='submit']").html("<i class='fa fa-lock' aria-hidden='true'></i>Login");
   if ($(".hide-login").length) {
     $("#login_box").addClass("invis");
   };
