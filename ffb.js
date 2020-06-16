@@ -25,12 +25,13 @@ $(document).ready(function() {
   $("#qrl-footer *:contains('|')").each(function() {    
     $(this).html($(this).html().replace(/\|/g, ""));
   });
-  $("a[href$='security-privacy']").attr("href", "https://www.ffbf.com/security-privacy").addClass("bypass-bump");
+  $("a[href*='.ffbf.com']").addClass("bypass-bump");
+  $("a[href$='security-privacy']").attr("href", "https://www.ffbf.com/security-privacy");
   // redirects privacy_statement to https://www.ffbf.com/security-privacy
   if ($(".privacy_statement_redirect").length) {
     window.location = "https://www.ffbf.com/security-privacy"; 
   }
-  $("a[href$='accessibility-statement']").attr("href", "https://www.ffbf.com/accessibility-statement").addClass("bypass-bump");  
+  $("a[href$='accessibility-statement']").attr("href", "https://www.ffbf.com/accessibility-statement");  
   // redirects accessibility to https://www.ffbf.com/accessibility-statement
   if ($(".accessibility_redirect").length) {
     window.location = "https://www.ffbf.com/accessibility-statement"; 
