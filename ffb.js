@@ -106,17 +106,18 @@ function getParameterByName(name) {
   var match = RegExp('[?&]' + name + '=([^&]*)').exec(window.location.search);
   return match && decodeURIComponent(match[1].replace(/\+/g, ' '));
 }
-// perform loan search on enter
-if ($("#ihm_query_loan_number").length) {
+// loan search fixes
+if ($("#loanQuery").length) {
+  $("#loanQuery input[name='columns']").val("Loan Number,Borrower Name,Loan Amount,Rate,Channel,Status,Lock Expires");
   $("#ihm_query_loan_number").attr("type", "number");
   $("#ihm_query_loan_number").keypress(function(e) {
     if (e.which == 13) {
-      window.location = "summary?query_id=11076646&searchCall=leftmenu&columns=Loan+Number%2CBorrower+Name%2CStatus%2CLoan+Purpose%2CLoan+Amount%2CLock+Expires&ihm_query=" + this.value;
+      window.location = "summary?query_id=11076646&searchCall=leftmenu&columns=Loan+Number%2CBorrower+Name%2CLoan+Amount%2C%2CRate%2CChannel%2CStatus%2CLock+Expires&ihm_query_loan_number=" + encodeURIComponent(this.value);
     }
   });
   $("#ihm_query_last_name").keypress(function(e) {
     if (e.which == 13) {
-      window.location = "summary?query_id=11074519&searchCall=leftmenu&columns=Loan+Number%2CBorrower+Name%2CStatus%2CLoan+Purpose%2CLoan+Amount%2CLock+Expires&ihm_query_last_name=" + encodeURIComponent(this.value);
+      window.location = "summary?query_id=11074519&searchCall=leftmenu&columns=Loan+Number%2CBorrower+Name%2CLoan+Amount%2C%2CRate%2CChannel%2CStatus%2CLock+Expires&ihm_query_last_name=" + encodeURIComponent(this.value);
     }
   });
 }
