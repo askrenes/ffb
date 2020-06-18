@@ -106,9 +106,17 @@ function getParameterByName(name) {
   var match = RegExp('[?&]' + name + '=([^&]*)').exec(window.location.search);
   return match && decodeURIComponent(match[1].replace(/\+/g, ' '));
 }
-function searchNumber() {
-  window.location = "/summary?query_id=663219&searchCall=leftmenu&columns=Loan+Number%2CBorrower+Name%2CStatus%2CLoan+Purpose%2CLoan+Amount%2CLock+Expires&ihm_query=" + encodeURIComponent($("#txtSearchLoanNumber").val())
-}
-function searchName() {
-  window.location = "/summary?query_id=149&searchCall=leftmenu&columns=Loan+Number%2CBorrower+Name%2CStatus%2CLoan+Purpose%2CLoan+Amount%2CLock+Expires&ihm_query_last_name=" + encodeURIComponent($("#txtSearchLastName").val())
+// perform loan search on enter
+if ($("#ihm_query_loan_number").length) {
+  $("#ihm_query_loan_number").attr("type", "number");
+  $("#ihm_query_loan_number").keypress(function(e) {
+    if (e.which == 13) {
+      window.location = "summary?query_id=11076646&searchCall=leftmenu&columns=Loan+Number%2CBorrower+Name%2CStatus%2CLoan+Purpose%2CLoan+Amount%2CLock+Expires&ihm_query=" + this.value;
+    }
+  });
+  $("#ihm_query_last_name").keypress(function(e) {
+    if (e.which == 13) {
+      window.location = "summary?query_id=11074519&searchCall=leftmenu&columns=Loan+Number%2CBorrower+Name%2CStatus%2CLoan+Purpose%2CLoan+Amount%2CLock+Expires&ihm_query_last_name=" + encodeURIComponent(this.value);
+    }
+  });
 }
