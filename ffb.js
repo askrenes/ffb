@@ -72,6 +72,34 @@ $(document).ready(function() {
     var anchor = $(this);
     anchor.unbind("click");
   });
+  // add title to known pipeline reports
+  if (window.location.pathname == "/summary") { 
+    var qid = getParameterByName("query_id");
+    var qtitle = "";
+    switch(qid) {
+      case "11079966":
+        qtitle = "Active Pipeline";
+        break;
+      case "11079967":
+        qtitle = "Cancelled &amp; Denied (Last 90 Days)";
+        break;
+      case "11079968":
+        qtitle = "Funded (Last 30 Days)";
+        break;
+      case "11079969":
+        qtitle = "Locked Loans";
+        break;
+      case "11079970":
+        qtitle = "Originations (Last 60 Days)";
+        break;
+      case "11079971":
+        qtitle = "Pended Loans (UW &amp; PC)";
+        break;
+    }
+    if (qtitle != "") {
+      $("#bodypanel input[name='columns']").before("<h2 style='margin-top:0;'>" + qtitle + "</h2>");
+    }
+  }
 });
 // end (document).ready()
 // activate_login() highlights the login area
