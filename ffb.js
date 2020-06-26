@@ -1,7 +1,7 @@
 // (document).ready() runs when the page has loaded
 $(document).ready(function() {
   // configure login
-  $("#login_box form input").attr("onfocus", "activate_login();")
+  $("#login_box form input").attr("onfocus", "activate_login();")  
   $("#login_box button[type='submit']").after("<a href='ForgotPassword' class='pw_help glyphicon glyphicon-question-sign'></a>");
   $("#login_box button[type='submit']").html("<i class='fa fa-lock' aria-hidden='true'></i>Login");
   if ($(".hide-login").length) {
@@ -107,17 +107,22 @@ function getParameterByName(name) {
   return match && decodeURIComponent(match[1].replace(/\+/g, ' '));
 }
 // loan search fixes
-if ($("#loanQuery").length) {
-  $("#loanQuery input[name='columns']").val("Loan Number,Borrower Name,Loan Amount,Rate,Channel,Status,Lock Expires");
-  $("#ihm_query_loan_number").attr("type", "number");
+// loan number search
+if ($("#loan_search").length) {
+  $("#ihm_query_loan_number").attr("type", "number"); // make sure only loan numbers can be entered
   $("#ihm_query_loan_number").keypress(function(e) {
     if (e.which == 13) {
       window.location = "summary?query_id=11076646&searchCall=leftmenu&columns=Loan+Number%2CBorrower+Name%2CLoan+Amount%2C%2CRate%2CChannel%2CStatus%2CLock+Expires&ihm_query_loan_number=" + encodeURIComponent(this.value);
     }
   });
+}
+// last name search
+if ($("#loan-query").length) {
+  $("#loan-query input[name='query_id']").val("11074519"); // fix blank query_id
+  $("#loan-query input[name='columns']").val("Loan Number,Borrower Name,Loan Amount,Rate,Channel,Status,Lock Expires"); // hard-code columns
   $("#ihm_query_last_name").keypress(function(e) {
     if (e.which == 13) {
       window.location = "summary?query_id=11074519&searchCall=leftmenu&columns=Loan+Number%2CBorrower+Name%2CLoan+Amount%2C%2CRate%2CChannel%2CStatus%2CLock+Expires&ihm_query_last_name=" + encodeURIComponent(this.value);
     }
-  });
+  });  
 }
